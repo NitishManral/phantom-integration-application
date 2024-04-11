@@ -57,6 +57,7 @@ const connectToPhantomMobile = async () => {
     try {
         const resp = await provider.connect();
         console.log(resp.publicKey.toString());
+        localStorage.setItem('solanaKey', resp.publicKey.toString());
         navigate('/main');
     } catch (err) {
       console.error(err);
