@@ -5,7 +5,7 @@ import AccountDetails from './AccountDetails';
  // Function to fetch accounts
  const fetchAccounts = async (connection, publicKey) => {
   let accounts;
-  for(let attempts=0;attempts<5&& !accounts;attempts++){
+  for(let attempts=0;attempts<5 && !accounts;attempts++){
     try {
       accounts = await connection.getParsedTokenAccountsByOwner(publicKey, {
         programId: new PublicKey('TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA'), 

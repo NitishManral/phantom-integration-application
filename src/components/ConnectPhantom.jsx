@@ -8,7 +8,6 @@ import { setPublicKey, setPrivateKey } from '../slice/KeyPairSlice';
 import { useSelector } from 'react-redux';
 import {isMobile} from 'react-device-detect';
 
-
 // PhantomConnectButton component
 function ConnectPhantom() {
   localStorage.removeItem('solanaKey');
@@ -48,7 +47,6 @@ const connectToPhantomMobile = async () => {
         return provider;
       }
     }
-  
     window.open('https://phantom.app/', '_blank');
   };
   
