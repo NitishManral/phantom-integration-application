@@ -33,7 +33,7 @@ const connectToPhantomMobile = async () => {
     const phantomConnectUrl = `https://phantom.app/ul/v1/connect?app_url=${appUrl}&dapp_encryption_public_key=${dappEncryptionPublicKey}&redirect_link=${redirectLink}`;
 
     setIsRedirect(true);
-      const newWindow = window.open(phantomConnectUrl, '_blank');
+    window.open(phantomConnectUrl, '_blank');
     } catch (error) {
       setError(error+"");
     }

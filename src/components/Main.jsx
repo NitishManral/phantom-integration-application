@@ -28,7 +28,7 @@ import AccountDetails from './AccountDetails';
 };
 const Main = () => {
   const solanaKey = localStorage.getItem('solanaKey');
-  const [nftData, setNftData] = useState([]);
+  // const [nftData, setNftData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [cluster, setCluster] = useState('devnet');
 
@@ -56,7 +56,7 @@ const Main = () => {
 
   useEffect(() => {
     setLoading(true); 
-    setNftData([]);
+    // setNftData([]);
     console.log("loading data for "+cluster)
     fetchBalanceAndNfts()
       .then(nfts => setNftData(nfts))
@@ -77,7 +77,7 @@ const Main = () => {
         </select>
       </div>
       <AccountDetails cluster={cluster} />
-      <div className='flex flex-row flex-wrap w-auto  m-3 items-center h-3/4 justify-center border-black  shadow-lg'>
+      {/* <div className='flex flex-row flex-wrap w-auto  m-3 items-center h-3/4 justify-center border-black  shadow-lg'>
         {loading ? (
           <p>Loading NFTs...</p>
         ) : nftData.length === 0 ? (
@@ -98,7 +98,7 @@ const Main = () => {
             </div>
           ))
         )}
-      </div>
+      </div> */}
     </div>
   );
 };
