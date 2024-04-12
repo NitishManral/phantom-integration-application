@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
     const navigate = useNavigate();
-    
+    localStorage.removeItem('solanaKey');
     const [log, setLog] = useState('');
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
