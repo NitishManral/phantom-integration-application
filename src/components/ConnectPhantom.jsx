@@ -22,9 +22,9 @@ const connectToPhantomMobile = async () => {
   const secretKey = bs58.encode(keyPair.secretKey);
   const publicKey = bs58.encode(keyPair.publicKey);
   try {
-    const appUrl = encodeURIComponent('http://192.168.194.49:5176/');
+    const appUrl = encodeURIComponent('https://master--phantom-integration-application.netlify.app');
     const dappEncryptionPublicKey = encodeURIComponent(bs58.encode(keyPair.publicKey));
-    const redirectLink = encodeURIComponent('http://192.168.194.49:5176/auth');
+    const redirectLink = encodeURIComponent('https://master--phantom-integration-application.netlify.app/auth');
     const phantomConnectUrl = `https://phantom.app/ul/v1/connect?app_url=${appUrl}&dapp_encryption_public_key=${publicKey}&redirect_link=${redirectLink}`;
     
     setIsRedirect(true);
