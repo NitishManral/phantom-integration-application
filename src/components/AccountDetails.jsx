@@ -68,7 +68,7 @@ function AccountDetails({ cluster }) {
         {isKeyCopied && <span className='text-xs p-2'>copied!</span>}
       </p>
       <h2 className='text-3xl font-bold'> <span className='text-sm '>SOL:</span> {(accountInfo.lamports / LAMPORTS_PER_SOL).toFixed(4)}</h2>
-      <h2 className='text-3xl font-bold'> <span className='text-sm '>USD:</span> {parseFloat(solPrice*((accountInfo.lamports / LAMPORTS_PER_SOL))).toFixed(4)}</h2>     
+      <h2 className='text-3xl font-bold'> <span className='text-sm '>USD:</span> {parseFloat(solPrice*((accountInfo.lamports / LAMPORTS_PER_SOL))).toFixed(4)}" $"</h2>     
     </div>
   );
 }
