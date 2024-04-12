@@ -49,7 +49,6 @@ const connectToPhantomMobile = async () => {
   };
   
   const connectToPhantomPC = async () => {
-    localStorage.removeItem('solanaKey');
     
     const provider = getProvider(); 
     try {
