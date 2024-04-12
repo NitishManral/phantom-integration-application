@@ -6,42 +6,34 @@ import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
     const navigate = useNavigate();
-    localStorage.removeItem('solanaKey');
-    const [log, setLog] = useState('');
     useEffect(() => {
         const urlParams = new URLSearchParams(window.location.search);
         const phantom_encryption_public_key = urlParams.get('phantom_encryption_public_key');
         const nonce = urlParams.get('nonce');
         const data = urlParams.get('data');
 
-        // Decode the keys and nonce from Base58
         const phantomPublicKey = bs58.decode(phantom_encryption_public_key);
         const nonceUint8Array = bs58.decode(nonce);
 
-        // Get the private key from local storage
-        const privateKeyBase58 = localStorage.getItem('secretKey');
-        const privateKey = bs58.decode(privateKeyBase58);
+        const secretKeyBase58 = localStorage.getItem('secretKey');
+        console.log("hello "+secretKeyBase58);
 
-        // Decrypt the data
+        const secretKey = bs58.decode(secretKeyBase58);
+
         const encryptedDataUint8Array = bs58.decode(data);
-        let decryptedDataUint8Array = nacl.box.open(encryptedDataUint8Array, nonceUint8Array, phantomPublicKey, privateKey);
-        let decryptedDataString = new TextDecoder().decode(decryptedDataUint8Array);
-        let decryptedDataObject;
-        try {
-             decryptedDataObject = JSON.parse(decryptedDataString);
-        } catch (error) {
-            setLog(error+"");
-        }
-
+        const decryptedDataUint8Array = nacl.box.open(encryptedDataUint8Array, nonceUint8Array, phantomPublicKey, secretKey);
+       
+        const decryptedDataString = new TextDecoder().decode(decryptedDataUint8Array);
+        const  decryptedDataObject   = JSON.parse(decryptedDataString);
         const publicKey = decryptedDataObject.public_key;
         localStorage.setItem('solanaKey', publicKey);
         
-            navigate('/main');
+        navigate('/main');
         
-    }, [ navigate]);
+    }, [ ]);
     return (
         <div className='flex flex-col w-full h-full justify-center items-center'>
-             <Loader type="box-rotate-x" bgColor='#fffff' color='#d3d3d3' title={"box-rotate-x"} size={100} />
+             <h2>Loading</h2>
         </div>
     );
 };

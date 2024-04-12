@@ -7,34 +7,31 @@ import { useDispatch } from 'react-redux';
 import { setPublicKey, setPrivateKey } from '../slice/KeyPairSlice';
 import {isMobile} from 'react-device-detect';
 
-// PhantomConnectButton component
+
 function ConnectPhantom() {
-  localStorage.removeItem('solanaKey');
-  localStorage.removeItem('secretKey');
-  
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
-  const [solanaKey, setSolanaKey] = useState(localStorage.getItem('solanaKey') || '');
   const [isRedirect, setIsRedirect] = useState(false);
-  const [error, setError] = useState("");
 
 
 const connectToPhantomMobile = async () => {
   const keyPair = nacl.box.keyPair();
   dispatch(setPublicKey(bs58.encode(keyPair.publicKey)));
   dispatch(setPrivateKey(bs58.encode(keyPair.secretKey)));
-  localStorage.setItem('secretKey', bs58.encode(keyPair.secretKey));
+  const secretKey = bs58.encode(keyPair.secretKey);
+  const publicKey = bs58.encode(keyPair.publicKey);
   try {
-    const appUrl = encodeURIComponent('https://master--phantom-integration-application.netlify.app/');
+    const appUrl = encodeURIComponent('http://192.168.194.49:5176/');
     const dappEncryptionPublicKey = encodeURIComponent(bs58.encode(keyPair.publicKey));
-    const redirectLink = encodeURIComponent('https://master--phantom-integration-application.netlify.app/auth');
-    const phantomConnectUrl = `https://phantom.app/ul/v1/connect?app_url=${appUrl}&dapp_encryption_public_key=${dappEncryptionPublicKey}&redirect_link=${redirectLink}`;
-
+    const redirectLink = encodeURIComponent('http://192.168.194.49:5176/auth');
+    const phantomConnectUrl = `https://phantom.app/ul/v1/connect?app_url=${appUrl}&dapp_encryption_public_key=${publicKey}&redirect_link=${redirectLink}`;
+    
     setIsRedirect(true);
     window.open(phantomConnectUrl, '_blank');
+    localStorage.setItem('secretKey', secretKey);
     } catch (error) {
-      setError(error+"");
+      console.log(error);
     }
   };
 
