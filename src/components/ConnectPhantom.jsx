@@ -11,13 +11,11 @@ import {isMobile} from 'react-device-detect';
 // PhantomConnectButton component
 function ConnectPhantom() {
   localStorage.removeItem('solanaKey');
-  localStorage.removeItem('privateKey111');
+  localStorage.removeItem('secretKey');
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
-  const [solanaKey, setSolanaKey] = useState(localStorage.getItem('solanaKey') || '');
   const [isRedirect, setIsRedirect] = useState(false);
-  const [error, setError] = useState("");
 
 
 const connectToPhantomMobile = async () => {
@@ -34,7 +32,7 @@ const connectToPhantomMobile = async () => {
     setIsRedirect(true);
     window.open(phantomConnectUrl, '_blank');
     } catch (error) {
-      setError(error+"");
+      console.error(error);
     }
   };
 
@@ -51,6 +49,8 @@ const connectToPhantomMobile = async () => {
   };
   
   const connectToPhantomPC = async () => {
+    localStorage.removeItem('solanaKey');
+    
     const provider = getProvider(); 
     try {
         const resp = await provider.connect();
