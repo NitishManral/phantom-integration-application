@@ -98,12 +98,6 @@ const connectToPhantomMobile = async () => {
           <h1 className='text-[#272626] text-lg font-bold'>Or</h1>
           <p className='text-[#272626] text-lg font-bold'>Don't have Phantom Wallet?</p>
           <a href='https://phantom.app/' className='text-blue-700'>Download Phantom Wallet</a>
-          <ul>
-            <li>  {error}</li>
-            <li>private key: {useSelector(state => state.keyPair.privateKey)}</li>
-            <li>public key: {useSelector(state => state.keyPair.publicKey)}</li>
-            <li>{isMobile?"Mobile":"PC"}</li>
-          </ul>
         </div>
       </div>
     </div>
