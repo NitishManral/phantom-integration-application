@@ -5,17 +5,19 @@ import bs58 from 'bs58';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setPublicKey, setPrivateKey } from '../slice/KeyPairSlice';
-import { useSelector } from 'react-redux';
 import {isMobile} from 'react-device-detect';
 
 // PhantomConnectButton component
 function ConnectPhantom() {
   localStorage.removeItem('solanaKey');
   localStorage.removeItem('secretKey');
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
+  const [solanaKey, setSolanaKey] = useState(localStorage.getItem('solanaKey') || '');
   const [isRedirect, setIsRedirect] = useState(false);
+  const [error, setError] = useState("");
 
 
 const connectToPhantomMobile = async () => {
@@ -32,7 +34,7 @@ const connectToPhantomMobile = async () => {
     setIsRedirect(true);
     window.open(phantomConnectUrl, '_blank');
     } catch (error) {
-      console.error(error);
+      setError(error+"");
     }
   };
 
@@ -49,6 +51,7 @@ const connectToPhantomMobile = async () => {
   };
   
   const connectToPhantomPC = async () => {
+    localStorage.removeItem('solanaKey');
     
     const provider = getProvider(); 
     try {
