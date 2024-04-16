@@ -1,8 +1,10 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Phantom integration Application
+This is a web application example which uses Deeplinks and provider object in window to connect to phantom application 
+Use of Deeplinks or Provider object is based on the device you are running this application.
+- Clone the project or Download the zip
+- Unzip the project
+```
+cd <to root folder>
+npm install
+npm run dev
+```
